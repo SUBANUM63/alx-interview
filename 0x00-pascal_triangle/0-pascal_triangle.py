@@ -6,10 +6,10 @@
 def pascal_triangle(n):
     """
     Returns a list of lists of integers representing Pascal's triangle of n.
-    
+
     Parameters:
     n (int): The number of rows in Pascal's triangle.
-    
+
     Returns:
     list of lists: Pascal's triangle represented as a list of lists.
     """
