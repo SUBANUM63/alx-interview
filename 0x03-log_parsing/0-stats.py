@@ -1,18 +1,11 @@
 #!/usr/bin/python3
-'''A script for parsing HTTP request logs and computing metrics.
+'''A script for parsing HTTP request logs.
 '''
-
 import re
 
 
 def extract_input(input_line):
     '''Extracts sections of a line of an HTTP request log.
-
-    Args:
-        input_line (str): The log line to be parsed.
-
-    Returns:
-        dict: A dictionary containing the 'status_code' and 'file_size'.
     '''
     fp = (
         r'\s*(?P<ip>\S+)\s*',
@@ -37,11 +30,6 @@ def extract_input(input_line):
 
 def print_statistics(total_file_size, status_codes_stats):
     '''Prints the accumulated statistics of the HTTP request log.
-
-    Args:
-        total_file_size (int): The total size of all files processed.
-        status_codes_stats (dict): A dictionary of status
-        codes and their counts.
     '''
     print('File size: {:d}'.format(total_file_size), flush=True)
     for status_code in sorted(status_codes_stats.keys()):
@@ -55,8 +43,6 @@ def update_metrics(line, total_file_size, status_codes_stats):
 
     Args:
         line (str): The line of input from which to retrieve the metrics.
-        total_file_size (int): The current total file size.
-        status_codes_stats (dict): The current status code statistics.
 
     Returns:
         int: The new total file size.
@@ -70,10 +56,6 @@ def update_metrics(line, total_file_size, status_codes_stats):
 
 def run():
     '''Starts the log parser.
-
-    Continuously reads from stdin, processes each line, and updates
-    the file size and status code metrics. Prints statistics every 10 lines
-    and on program interruption (Ctrl + C).
     '''
     line_num = 0
     total_file_size = 0
@@ -104,6 +86,3 @@ def run():
 
 if __name__ == '__main__':
     run()
-
-# Print the docstring of the script
-help(run)
